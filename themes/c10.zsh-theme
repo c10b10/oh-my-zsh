@@ -3,8 +3,8 @@
 # Help from Mark Nichols http://zanshin.net/2012/03/09/wordy-nerdy-zsh-prompt/
 
 function prompt_char {
-	CHAR_COL="%{$fg[cyan]%}"
-	CHAR_END="%{$reset_color%}"
+	local CHAR_COL="%{$fg[cyan]%}"
+	local CHAR_END="%{$reset_color%}"
     git branch >/dev/null 2>/dev/null && echo "$CHAR_COL±$CHAR_END " && return
     hg root >/dev/null 2>/dev/null && echo "$CHAR_COL☿$CHAR_END " && return
 	svn info >/dev/null 2>/dev/null && echo "$CHAR_COL⑆$CHAR_END" && return
