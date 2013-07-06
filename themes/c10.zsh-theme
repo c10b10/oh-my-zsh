@@ -63,9 +63,13 @@ function user_host {
 	echo %{$fg[magenta]%}%n%{$reset_color%}@%{$fg[yellow]%}$(box_name)%{$reset_color%}
 }
 
+function virtualenv_info {
+    [ $VIRTUAL_ENV ] && echo ' ('`basename $VIRTUAL_ENV`')'
+}
+
 PROMPT='
-$(rvm_prompt_info) $(user_host) in %{$fg_bold[green]%}${PWD/#$HOME/~}$(svn_prompt_info)%{$reset_color%}
-%(?,,%{${fg_bold[white]}%}[%?]%{$reset_color%} )$(prompt_char)$(hg_prompt_info)$(git_prompt_info) → %{$reset_color%}'
+$(rvm_prompt_info)$(virtualenv_info) $(user_host) in %{$fg_bold[green]%}${PWD/#$HOME/~}$(svn_prompt_info)%{$reset_color%}
+%(?,,%{${fg_bold[white]}%}[%?]%{$reset_color%} )$(prompt_char)$(git_prompt_info) → %{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[green]%}|"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[green]%}|"
