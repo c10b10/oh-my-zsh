@@ -53,9 +53,11 @@ function box_name {
 
 function rvm_prompt_info {
   # ruby_version=$(~/.rvm/bin/rvm-prompt)
-  ruby_version=$(~/.rvm/bin/rvm-prompt v g)
-  if [ -n "$ruby_version" ]; then
-    echo "%{$fg[yellow]%}|$ruby_version|"
+  if [ -f ~/.rvm/bin/rvm-prompt ]; then
+      ruby_version=$(~/.rvm/bin/rvm-prompt v g)
+      if [ -n "$ruby_version" ]; then
+        echo "%{$fg[yellow]%}|$ruby_version|"
+      fi
   fi
 }
 
