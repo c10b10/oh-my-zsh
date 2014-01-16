@@ -57,6 +57,8 @@ function rvm_prompt_info {
       ruby_version=$(~/.rvm/bin/rvm-prompt v g)
       if [ -n "$ruby_version" ]; then
         echo "%{$fg[yellow]%}|$ruby_version|"
+      else
+        echo "%{$fg[yellow]%}|system|"
       fi
   fi
 }
