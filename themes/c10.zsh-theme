@@ -5,8 +5,8 @@
 function prompt_char {
 	local CHAR_COL="%{$fg[cyan]%}"
 	local CHAR_END="%{$reset_color%}"
-    git branch >/dev/null 2>/dev/null && echo "$CHAR_COL±$CHAR_END " && return
-    hg root >/dev/null 2>/dev/null && echo "$CHAR_COL☿$CHAR_END " && return
+    git branch >/dev/null 2>/dev/null && echo "$CHAR_COL±$CHAR_END" && return
+    hg root >/dev/null 2>/dev/null && echo "$CHAR_COL☿$CHAR_END" && return
 	svn info >/dev/null 2>/dev/null && echo "$CHAR_COL⑆$CHAR_END" && return
     echo "$CHAR_COL○$CHAR_END"
 }
@@ -56,24 +56,24 @@ function rvm_prompt_info {
   if [ -f ~/.rvm/bin/rvm-prompt ]; then
       ruby_version=$(~/.rvm/bin/rvm-prompt v g)
       if [ -n "$ruby_version" ]; then
-        echo "%{$fg[yellow]%}|$ruby_version|"
+        echo "%{$fg[yellow]%}|$ruby_version| "
       else
-        echo "%{$fg[yellow]%}|system|"
+        echo "%{$fg[yellow]%}|system| "
       fi
   fi
+}
+
+function virtualenv_info {
+    [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
 }
 
 function user_host {
 	echo %{$fg[magenta]%}%n%{$reset_color%}@%{$fg[yellow]%}$(box_name)%{$reset_color%}
 }
 
-function virtualenv_info {
-    [ $VIRTUAL_ENV ] && echo ' ('`basename $VIRTUAL_ENV`')'
-}
-
 PROMPT='
-$(rvm_prompt_info)$(virtualenv_info) $(user_host) in %{$fg_bold[green]%}${PWD/#$HOME/~}$(svn_prompt_info)%{$reset_color%}
-%(?,,%{${fg_bold[white]}%}[%?]%{$reset_color%} )$(prompt_char)$(git_prompt_info) → %{$reset_color%}'
+$(rvm_prompt_info)$(virtualenv_info)$(user_host) in %{$fg_bold[green]%}${PWD/#$HOME/~}$(svn_prompt_info)%{$reset_color%}
+%(?,,%{${fg_bold[white]}%}[%?] %{$reset_color%})$(prompt_char)$(git_prompt_info) → %{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[green]%}|"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[green]%}|"
